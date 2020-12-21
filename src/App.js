@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+const App = () => {
+  const [totalValue, setTotalValue] = useState(0);
+  const [value, setValue] = useState(0);
 
-function App() {
+  const totalClicked = () => {
+    return setTotalValue((inc) => inc + 1);
+  };
+  const increment = () => {
+    return setValue((inc) => inc + 1);
+  };
+  const decrement = () => {
+    return setValue((inc) => inc - 1);
+  };
+  const reset = () => {
+    setTotalValue(0);
+    setValue(0);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className={"App"}>
+      <div>Total clicked: {totalValue}</div>
+      <div>Current value: {value}</div>
+      <div>
+        <button
+          onClick={() => {
+            totalClicked();
+            increment();
+          }}
         >
-          Learn React
-        </a>
-      </header>
+          Increment
+        </button>
+        <button onClick={decrement}>Decrement</button>
+        <button onClick={reset}>Reset</button>
+      </div>
     </div>
   );
-}
+};
 
 export default App;
